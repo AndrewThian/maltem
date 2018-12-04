@@ -49,8 +49,8 @@ const StickyNotes = {
         this.saveNotes();
         this.generateStickyNotes();
     },
-    deleteStickyNote: function (data) {
-        this.notes = this.notes.filter(note => note.uid !== data.uid )
+    deleteStickyNote: function (id) {
+        this.notes = this.notes.filter(note => note.uid !== id )
         this.saveNotes();
         this.generateStickyNotes();
     },
@@ -65,9 +65,22 @@ const StickyNotes = {
 }
 
 StickyNotes.init();
+
+// edit each sticky note
 StickyNotes.rootNode.addEventListener("keyup", e => {
     const stickynote = e.target.parentElement.parentElement
     const type = e.target.className
     const id = stickynote.dataset.id
     StickyNotes.updateStickyData(parseInt(id, 10), e.target.value, type)
 })
+
+// delete each sticky note
+StickyNotes.rootNode.addEventListener("click", e => {
+    if (e.target.id === "remove") {
+        const stickynote = e.target.parentNode
+        const id = stickynote.dataset.id
+        StickyNotes.deleteStickyNote(parseInt(id, 10))
+    }
+})
+
+// add each sticky note
