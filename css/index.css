@@ -1,0 +1,65 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 1px;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+
+#wrapper {
+    width: 90%;
+    max-width: 960px;
+    margin: 20px auto;
+
+    border-radius: 6px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    padding: 0 0 20px;
+    overflow: hidden;
+    border: 1px solid lightgray;
+}
+
+#page-banner {
+    background: lightgrey;
+    padding: 10px 0;
+}
+
+#page-banner h1, #page-banner p {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#page-banner input,#add,#save {
+    margin: 20px auto;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #444;
+}
+
+#page-banner input,#add,#save:focus {
+    outline: 0;
+}
+
+#add, #save {
+    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+#add:hover {
+    background-color: salmon;
+}
+
+#save:hover {
+    background-color: skyblue;
+}
+
+#controls {
+    display: flex;
+    padding: 0 20%;
+    justify-content: center;
+}
