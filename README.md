@@ -6,7 +6,7 @@ Each sticky note is created via template strings and appended to the dom.
 
 I was tempted to move code into various files but I felt it would have overkill as `index.js` does not exceed 150 lines yet. By wrapping everything into a IIFE to implement the module pattern, we can keep most of our variables private and rely on closures to execute most of our code.
 
-As for the ID of each sticky note, I felt that using the date(converted to seconds since unix epoch) would be a sufficiently unique id. Hopefully the user does not add a sticky note faster than that.
+As for the ID of each sticky note, I felt that using the date(converted to ~~seconds~~ milliseconds since unix epoch) would be a sufficiently unique id. Hopefully the user does not add a sticky note faster than that.
 
 **edit** in light of the time constraint i have, I did not full test the code and app on IE >= 10.
 
