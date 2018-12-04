@@ -5,6 +5,7 @@ const Helper = {
 }
 
 const StickyNotes = {
+    addButon: document.querySelector("#add"),
     rootNode: document.querySelector("#board"),
     notes: [],
     init: function() {
@@ -45,7 +46,6 @@ const StickyNotes = {
             content: ""
         }
         this.notes = this.notes.concat(newNote)
-        console.log(this.notes)
         this.saveNotes();
         this.generateStickyNotes();
     },
@@ -84,3 +84,8 @@ StickyNotes.rootNode.addEventListener("click", e => {
 })
 
 // add each sticky note
+StickyNotes.addButon.addEventListener("click", e => {
+    if (e.target.id === "add") {
+        StickyNotes.addStickyNote();
+    }
+})
