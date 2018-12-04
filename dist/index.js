@@ -1,11 +1,11 @@
 (function () {
-    const Helper = {
+    var Helper = {
         uuid: function() {
             return parseInt((new Date().getTime() / 1000).toFixed(0))
         }
     }
     
-    const StickyNotes = {
+    var StickyNotes = {
         searcBar: document.forms["search-notes"].querySelector("input"),
         addButon: document.querySelector("#add"),
         rootNode: document.querySelector("#board"),
@@ -34,7 +34,7 @@
         },
         // creating each individual dom node
         createStickyNote: function (data) {
-            const HTMLString = `
+            var HTMLString = `
                 <div class="note" id="note-${data.uid}" data-id=${data.uid}>
                     <button class="note-button remove" id="remove">X</button>
                     <div class="note-content">
@@ -46,7 +46,7 @@
             this.rootNode.innerHTML += HTMLString
         },
         addStickyNote: function () {
-            const newNote = {
+            var newNote = {
                 uid: Helper.uuid(),
                 title: "",
                 content: ""
@@ -71,16 +71,16 @@
         bindUIEvents: function () {
             // edit each sticky note
             StickyNotes.rootNode.addEventListener("keyup", e => {
-                const stickynote = e.target.parentElement.parentElement
-                const type = e.target.className
-                const id = stickynote.dataset.id
+                var stickynote = e.target.parentElement.parentElement
+                var type = e.target.className
+                var id = stickynote.dataset.id
                 StickyNotes.updateStickyData(parseInt(id, 10), e.target.value, type)
             })
             // delete each sticky note
             StickyNotes.rootNode.addEventListener("click", e => {
                 if (e.target.id === "remove") {
-                    const stickynote = e.target.parentNode
-                    const id = stickynote.dataset.id
+                    var stickynote = e.target.parentNode
+                    var id = stickynote.dataset.id
                     StickyNotes.deleteStickyNote(parseInt(id, 10))
                 }
             })
@@ -92,10 +92,10 @@
             })
             // filter sticky note
             StickyNotes.searcBar.addEventListener("keyup", e => {
-                const term = e.target.value.toLowerCase();
-                const notes = StickyNotes.rootNode.getElementsByClassName("note")
+                var term = e.target.value.toLowerCase();
+                var notes = StickyNotes.rootNode.getElementsByClassName("note")
                 Array.from(notes).forEach(note => {
-                    const title = note.childNodes[3].childNodes[1].value
+                    var title = note.childNodes[3].childNodes[1].value
                     if (title.toLowerCase().indexOf(term) != -1) {
                         note.style.display = "block"
                     } else {
