@@ -1,7 +1,7 @@
 (function () {
     var Helper = {
         uuid: function() {
-            return parseInt((new Date().getTime() / 1000).toFixed(0))
+            return parseInt((new Date().getTime()))
         }
     }
     
