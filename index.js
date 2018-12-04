@@ -6,29 +6,22 @@ const Helper = {
 
 const StickyNotes = {
     rootNode: document.querySelector("#board"),
-    notesData: localStorage.getItem("notes"),
     notes: [],
     init: function() {
-        if (!this.notesData) {
-            // insert first empty note
-            this.insertFirstNote();
+        if (localStorage.getItem("notes")) {
+            this.generateStickyNotes();
         }
-        this.generateStickyNotes();
-    },
-    // insert first empty note into localstorage if there are none
-    insertFirstNote: function() {
-        this.notesData = [ { uid: Helper.uuid(), title: "", content: "" } ]
-        this.saveNotes();
     },
     // store notes into localstorage
     saveNotes: function () {
-        localStorage.setItem("notes", JSON.stringify(this.notesData))
+        localStorage.setItem("notes", JSON.stringify(this.notes))
+    },
+    getNotes: function () {
+        return JSON.parse(localStorage.getItem("notes"));
     },
     generateStickyNotes: function () {
-        this.notesData = localStorage.getItem("notes");
-        this.notes = JSON.parse(this.notesData);
+        this.notes = this.getNotes();
         this.notes.forEach(note => {
-            console.log("running")
             this.createStickyNote(note)
         })
     },
@@ -43,6 +36,11 @@ const StickyNotes = {
             </div>
         `
         this.rootNode.innerHTML += HTMLString
+    },
+    deleteStickyNote: function (data) {
+        this.notes = this.notes.filter(note => note.uid !== data.uid )
+        this.saveNotes();
+        this.generateStickyNotes();
     }
 }
 
