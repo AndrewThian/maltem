@@ -56,12 +56,14 @@
             this.generateStickyNotes();
         },
         deleteStickyNote: function (id) {
-            this.notes = this.notes.filter(note => note.uid !== id )
+            this.notes = this.notes.filter(function(note) {
+                return note.uid !== id
+            })
             this.saveNotes();
             this.generateStickyNotes();
         },
         updateStickyData: function (id, data, type) {
-            this.notes.forEach(note => {
+            this.notes.forEach(function (note) {
                 if (note.uid === id) {
                     note[type] = data
                 }
@@ -70,14 +72,14 @@
         },
         bindUIEvents: function () {
             // edit each sticky note
-            StickyNotes.rootNode.addEventListener("keyup", e => {
+            StickyNotes.rootNode.addEventListener("keyup", function(e) {
                 var stickynote = e.target.parentElement.parentElement
                 var type = e.target.className
                 var id = stickynote.dataset.id
                 StickyNotes.updateStickyData(parseInt(id, 10), e.target.value, type)
             })
             // delete each sticky note
-            StickyNotes.rootNode.addEventListener("click", e => {
+            StickyNotes.rootNode.addEventListener("click", function(e) {
                 if (e.target.id === "remove") {
                     var stickynote = e.target.parentNode
                     var id = stickynote.dataset.id
@@ -85,16 +87,16 @@
                 }
             })
             // add each sticky note
-            StickyNotes.addButon.addEventListener("click", e => {
+            StickyNotes.addButon.addEventListener("click", function(e) {
                 if (e.target.id === "add") {
                     StickyNotes.addStickyNote();
                 }
             })
             // filter sticky note
-            StickyNotes.searcBar.addEventListener("keyup", e => {
+            StickyNotes.searcBar.addEventListener("keyup", function(e) {
                 var term = e.target.value.toLowerCase();
                 var notes = StickyNotes.rootNode.getElementsByClassName("note")
-                Array.from(notes).forEach(note => {
+                Array.from(notes).forEach(function (note) {
                     var title = note.childNodes[3].childNodes[1].value
                     if (title.toLowerCase().indexOf(term) != -1) {
                         note.style.display = "block"
