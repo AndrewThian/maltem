@@ -31,7 +31,7 @@ h1, h2 {
     margin: 10px 0;
 }
 
-#page-banner input,#add,#save {
+#page-banner input,#add {
     margin: 20px auto;
     padding: 8px;
     border: 1px solid #ddd;
@@ -40,11 +40,11 @@ h1, h2 {
     color: #444;
 }
 
-#page-banner input,#add,#save:focus {
+#page-banner input,#add:focus {
     outline: 0;
 }
 
-#add, #save {
+#add {
     margin-left: 0;
     margin-right: 0;
     cursor: pointer;
