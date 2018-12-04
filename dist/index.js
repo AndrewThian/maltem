@@ -20,9 +20,11 @@
         saveNotes: function () {
             localStorage.setItem("notes", JSON.stringify(this.notes))
         },
+        // retrieves notes from localstorage
         getNotes: function () {
             return JSON.parse(localStorage.getItem("notes"));
         },
+        // regenerate all dom nodes with sticknotes data
         generateStickyNotes: function () {
             this.notes = this.getNotes();
             this.rootNode.innerHTML = "";
@@ -30,6 +32,7 @@
                 this.createStickyNote(note)
             })
         },
+        // creating each individual dom node
         createStickyNote: function (data) {
             const HTMLString = `
                 <div class="note" id="note-${data.uid}" data-id=${data.uid}>
@@ -73,7 +76,6 @@
                 const id = stickynote.dataset.id
                 StickyNotes.updateStickyData(parseInt(id, 10), e.target.value, type)
             })
-    
             // delete each sticky note
             StickyNotes.rootNode.addEventListener("click", e => {
                 if (e.target.id === "remove") {
@@ -82,14 +84,12 @@
                     StickyNotes.deleteStickyNote(parseInt(id, 10))
                 }
             })
-    
             // add each sticky note
             StickyNotes.addButon.addEventListener("click", e => {
                 if (e.target.id === "add") {
                     StickyNotes.addStickyNote();
                 }
             })
-    
             // filter sticky note
             StickyNotes.searcBar.addEventListener("keyup", e => {
                 const term = e.target.value.toLowerCase();
