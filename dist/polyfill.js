@@ -1,3 +1,4 @@
+// just in case..
 // https://gist.github.com/revolunet/1908355
 if (!Array.prototype.indexOf) {
   Array.prototype.indexOf = function(elt /*, from*/) {
