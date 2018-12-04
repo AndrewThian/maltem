@@ -5,6 +5,7 @@ const Helper = {
 }
 
 const StickyNotes = {
+    searcBar: document.forms["search-notes"].querySelector("input"),
     addButon: document.querySelector("#add"),
     rootNode: document.querySelector("#board"),
     notes: [],
@@ -88,4 +89,18 @@ StickyNotes.addButon.addEventListener("click", e => {
     if (e.target.id === "add") {
         StickyNotes.addStickyNote();
     }
+})
+
+// filter sticky note
+StickyNotes.searcBar.addEventListener("keyup", e => {
+    const term = e.target.value.toLowerCase();
+    const notes = StickyNotes.rootNode.getElementsByClassName("note")
+    Array.from(notes).forEach(note => {
+        const title = note.childNodes[3].childNodes[1].value
+        if (title.toLowerCase().indexOf(term) != -1) {
+            note.style.display = "block"
+        } else {
+            note.style.display = "none";
+        }
+    })
 })
