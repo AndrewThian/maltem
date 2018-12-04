@@ -21,6 +21,7 @@ const StickyNotes = {
     },
     generateStickyNotes: function () {
         this.notes = this.getNotes();
+        this.rootNode.innerHTML = "";
         this.notes.forEach(note => {
             this.createStickyNote(note)
         })
@@ -37,11 +38,36 @@ const StickyNotes = {
         `
         this.rootNode.innerHTML += HTMLString
     },
+    addStickyNote: function () {
+        const newNote = {
+            uid: Helper.uuid(),
+            title: "",
+            content: ""
+        }
+        this.notes = this.notes.concat(newNote)
+        console.log(this.notes)
+        this.saveNotes();
+        this.generateStickyNotes();
+    },
     deleteStickyNote: function (data) {
         this.notes = this.notes.filter(note => note.uid !== data.uid )
         this.saveNotes();
         this.generateStickyNotes();
+    },
+    updateStickyData: function (id, data, type) {
+        this.notes.forEach(note => {
+            if (note.uid === id) {
+                note[type] = data
+            }
+        })
+        this.saveNotes();
     }
 }
 
 StickyNotes.init();
+StickyNotes.rootNode.addEventListener("keyup", e => {
+    const stickynote = e.target.parentElement.parentElement
+    const type = e.target.className
+    const id = stickynote.dataset.id
+    StickyNotes.updateStickyData(parseInt(id, 10), e.target.value, type)
+})
