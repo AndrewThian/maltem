@@ -7,8 +7,8 @@
     constructor() {
       this.notes = []
       this.rootNode = document.querySelector('#board')
-      this.addButon = document.querySelector('#add')
-      this.searcBar = document.forms['search-notes'].querySelector('input')
+      this.addButton = document.querySelector('#add')
+      this.searchBar = document.forms['search-notes'].querySelector('input')
 
       if (localStorage.getItem('notes')) this.generateStickyNotes()
       this.bindUIEvents()
@@ -75,10 +75,10 @@
           this.deleteStickyNote(parseInt(id, 10))
         }
       })
-      this.addButon.addEventListener('click', e => {
+      this.addButton.addEventListener('click', e => {
         if (e.target.id === 'add') this.addStickyNote()
       })
-      this.searcBar.addEventListener('keyup', e => {
+      this.searchBar.addEventListener('keyup', e => {
         const term = e.target.value.toLowerCase()
         const notes = this.rootNode.getElementsByClassName('note')
         Array.from(notes).forEach(note => {
